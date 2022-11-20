@@ -1,4 +1,3 @@
-/*
 package com.user.registrationAndLogin.exceptionsAndErrors.handlerService;
 
 import com.user.registrationAndLogin.exceptionsAndErrors.errorResponse.ErrorResponse;
@@ -22,11 +21,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorResponse> handle(SQLException exception, WebRequest webRequest) {
         return ResponseEntity.badRequest().body(new ErrorResponse("exception.getMessage()", "exception.getCause().getLocalizedMessage()", "exception.getLocalizedMessage()"));
     }
-   */
-/* @ExceptionHandler(HttpMessageNotReadableException.class)
+   /* @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handle(HttpMessageNotReadableException exception, WebRequest webRequest) {
         return ResponseEntity.badRequest().body(new ErrorResponse("exception.getMessage()", "exception.getCause().getLocalizedMessage()", "exception.getLocalizedMessage()"));
-    }*//*
-
+    }*/
 }
-*/
