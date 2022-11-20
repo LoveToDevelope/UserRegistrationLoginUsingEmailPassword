@@ -46,4 +46,14 @@ public class RoleEntity {
     public void setLoginEntities(List<LoginEntity> loginEntities) {
         this.loginEntities = loginEntities;
     }
+
+    @Override
+    public String toString() {
+        return "RoleEntity{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", isActive='" + isActive + '\'' +
+                ", loginEntities=" + loginEntities +
+                '}';
+    }
 }

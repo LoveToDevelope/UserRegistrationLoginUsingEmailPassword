@@ -9,21 +9,24 @@ import com.user.registrationAndLogin.model.LoginModel;
 import com.user.registrationAndLogin.model.request.RegistrationRequestModel;
 import com.user.registrationAndLogin.repository.LoginRepository;
 import com.user.registrationAndLogin.repository.RegistrationRepository;
+import com.user.registrationAndLogin.repository.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.time.Instant;
 
 @Service
 @Transactional
 public class RegistrationAndLoginServiceImpl implements RegistrationAndLoginService {
     private RegistrationRepository registrationRepository;
+
+    private RoleRepository roleRepository;
     private LoginRepository loginRepository;
     private ModelMapper mapper;
 
-    public RegistrationAndLoginServiceImpl(RegistrationRepository registrationRepository, LoginRepository loginRepository, ModelMapper mapper) {
+    public RegistrationAndLoginServiceImpl(RoleRepository roleRepository, RegistrationRepository registrationRepository, LoginRepository loginRepository, ModelMapper mapper) {
+        this.roleRepository = roleRepository;
         this.registrationRepository = registrationRepository;
         this.loginRepository = loginRepository;
         this.mapper = mapper;
@@ -31,7 +34,9 @@ public class RegistrationAndLoginServiceImpl implements RegistrationAndLoginServ
 
     private LoginModel saveUserLoginDetails(LoginModel loginModel) {
         LoginEntity loginEntity = mapper.map(loginModel, LoginEntity.class);
+        loginEntity.setRoleList(roleRepository.findByRole("ROLE_USER"));
         LoginEntity savedLoginDetails = loginRepository.save(loginEntity);
+
         return mapper.map(savedLoginDetails, LoginModel.class);
     }
 

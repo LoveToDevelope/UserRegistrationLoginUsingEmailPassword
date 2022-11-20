@@ -6,6 +6,8 @@ import com.user.registrationAndLogin.enums.EnableStatus;
 import lombok.Data;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 public class LoginModel {
     private String email;
@@ -14,6 +16,8 @@ public class LoginModel {
     private EnableStatus isEnabled;
     private ActiveStatus isActive;
     private DeleteStatus isDeleted;
+
+    private Set<RoleModel> roles;
 
     public String getEmail() {
         return email;
@@ -61,5 +65,13 @@ public class LoginModel {
 
     public void setIsDeleted(DeleteStatus isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public Set<RoleModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleModel> roles) {
+        this.roles = roles;
     }
 }
